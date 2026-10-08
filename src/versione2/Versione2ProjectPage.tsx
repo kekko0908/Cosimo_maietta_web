@@ -62,7 +62,7 @@ export default function Versione2ProjectPage() {
       <main className="v2-site v2-project-missing">
         <span>404 / Progetto non trovato</span>
         <h1>Questa storia non è disponibile.</h1>
-        <Link to={`/versione2${location.search}`}>Torna al portfolio</Link>
+        <Link to={`/${location.search}`}>Torna al portfolio</Link>
       </main>
     );
   }
@@ -78,7 +78,7 @@ export default function Versione2ProjectPage() {
   return (
     <div className="v2-site v2-project-page" id="top">
       <header className="v2-project-header">
-        <Link to={`/versione2${location.search}`}><ArrowLeft aria-hidden="true" /> Portfolio</Link>
+        <Link to={`/${location.search}`}><ArrowLeft aria-hidden="true" /> Portfolio</Link>
         <span>Cosimo Maietta</span>
       </header>
 
@@ -125,7 +125,7 @@ export default function Versione2ProjectPage() {
           </div>
           <div className="v2-next-project-cards">
             {otherProjects.map((item) => (
-              <Link key={item.slug} to={`/versione2/progetti/${item.slug}${location.search}`}>
+              <Link key={item.slug} to={`/progetti/${item.slug}${location.search}`}>
                 <div className="v2-next-project-image">
                   <ResponsivePhoto photo={item.photos[0]} sizes="(max-width: 760px) 92vw, 42vw" />
                 </div>

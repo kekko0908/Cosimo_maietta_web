@@ -1,12 +1,12 @@
-﻿# Cosimo Maietta — Arte Viva
+# Cosimo Maietta
 
-Sito portfolio per Cosimo Maietta, fotografo a Napoli. Il progetto unisce il portfolio fotografico Arte Viva e la seconda esperienza editoriale dedicata a ritratto, moda e beauty.
+Portfolio fotografico di Cosimo Maietta, fotografo a Napoli, dedicato a ritratto, moda e beauty.
 
 ## Funzionalità
 
-- Portfolio con opere, artisti, mostre e pagine di approfondimento.
-- Carrello, checkout, ordini e pagine informative.
-- Portfolio Versione 2 con tre direzioni visive, archivio fotografico, progetti e contatti.
+- Home predefinita su `/`, con layout `stories=v2` e `services=v2`.
+- Archivio fotografico, pagine progetto e modulo contatti.
+- Varianti visuali selezionabili; gli strumenti di confronto si aprono solo con `lab=1` nell'URL.
 - Immagini locali responsive in AVIF, WebP e JPEG.
 - Layout responsive e animazioni con supporto alle preferenze di movimento ridotto.
 

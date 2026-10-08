@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Versione2Footer, Versione2Header } from './Versione2Chrome';
 import { ResponsivePhoto } from './ResponsivePhoto';
@@ -12,6 +12,7 @@ const archiveItems = versione2Projects.flatMap((project) =>
 );
 
 export default function Versione2ArchivePage() {
+  const location = useLocation();
   useEffect(() => {
     document.title = 'Archivio — Cosimo Maietta';
   }, []);
@@ -60,7 +61,7 @@ export default function Versione2ArchivePage() {
                 viewport={{ once: true, amount: 0.12 }}
                 transition={{ duration: 0.6, delay: (index % 6) * 0.04 }}
               >
-                <Link to={`/versione2/progetti/${project.slug}`} className="v2-contact-item">
+                <Link to={`/progetti/${project.slug}${location.search}`} className="v2-contact-item">
                   <ResponsivePhoto photo={photo} sizes="(max-width: 600px) 50vw, (max-width: 1100px) 25vw, 16vw" />
                   <span>{photo.title}<ArrowUpRight aria-hidden="true" /></span>
                   <small>{project.title}</small>

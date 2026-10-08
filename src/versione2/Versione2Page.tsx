@@ -136,7 +136,7 @@ function Hero({ variant }: { variant: Versione2Variant }) {
 }
 
 function ProjectLink({ project, search }: { project: Versione2Project; search: string }) {
-  return `/versione2/progetti/${project.slug}${search}`;
+  return `/progetti/${project.slug}${search}`;
 }
 
 function Works({ variant, immersive = false }: { variant: Versione2Variant; immersive?: boolean }) {
@@ -445,7 +445,7 @@ function Contact() {
         </div>
         <label>Brief<textarea name="message" rows={5} required placeholder="Obiettivo, utilizzo delle immagini, location e numero di scatti." /></label>
         <label className="v2-honeypot" aria-hidden="true">Sito web<input name="website" tabIndex={-1} autoComplete="off" /></label>
-        <label className="v2-consent"><input name="consent" type="checkbox" value="accepted" required /><span>Ho letto la <Link to="/privacy-policy">Privacy Policy</Link> e acconsento al trattamento dei dati.</span></label>
+        <label className="v2-consent"><input name="consent" type="checkbox" value="accepted" required /><span>Acconsento al trattamento dei dati per la gestione della mia richiesta.</span></label>
         <button type="submit" disabled={status === 'sending'}>Invia la richiesta <ArrowUpRight aria-hidden="true" /></button>
         <p className={`v2-form-status is-${status}`} role="status" aria-live="polite">{message}</p>
       </form>
@@ -510,6 +510,17 @@ export default function Versione2Page() {
   useEffect(() => {
     document.title = 'Cosimo Maietta — Portrait & Editorial Photographer';
   }, []);
+
+  useEffect(() => {
+    const defaults = { stories: 'v2', services: 'v2' };
+    if (Object.keys(defaults).every((key) => searchParams.has(key))) return;
+
+    const next = new URLSearchParams(searchParams);
+    Object.entries(defaults).forEach(([key, value]) => {
+      if (!next.has(key)) next.set(key, value);
+    });
+    setSearchParams(next, { replace: true });
+  }, [searchParams, setSearchParams]);
 
   const update = (section: 'hero' | 'works' | 'profile', variant: Versione2Variant) => {
     const next = new URLSearchParams(searchParams);
