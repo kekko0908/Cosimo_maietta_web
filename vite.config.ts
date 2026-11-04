@@ -9,6 +9,9 @@ export default defineConfig(({mode}) => {
     plugins: [react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
+      'import.meta.env.VITE_PREVIEW_MODE': JSON.stringify(process.env.VERCEL_ENV === 'preview' ? 'true' : (env.VITE_PREVIEW_MODE || 'true')),
+      'import.meta.env.VITE_SITE_URL': JSON.stringify(process.env.VERCEL_ENV === 'preview' && process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}` : (env.VITE_SITE_URL || 'https://photographer.cosimomaietta.example')),
     },
     resolve: {
       alias: {
