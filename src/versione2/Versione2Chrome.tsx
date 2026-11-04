@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowUpRight, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { versione2Socials } from './content';
 
@@ -26,7 +26,7 @@ export function Versione2Header() {
       >
         {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
       </button>
-      <nav id="v2-navigation" className={`v2-nav ${open ? 'is-open' : ''}`} aria-label="Navigazione Versione 2">
+      <nav id="v2-navigation" className={`v2-nav ${open ? 'is-open' : ''}`} aria-label="Navigazione principale">
         <a href={sectionHref('lavori')} onClick={() => setOpen(false)}>Lavori</a>
         <Link className={isArchive ? 'is-active' : ''} aria-current={isArchive ? 'page' : undefined} to={{ pathname: '/archivio', search: location.search }} onClick={() => setOpen(false)}>Archivio</Link>
         <a href={sectionHref('profilo')} onClick={() => setOpen(false)}>Profilo</a>
@@ -42,10 +42,11 @@ export function Versione2Footer() {
   return (
     <footer className="v2-footer">
       <div className="v2-footer-lead">
-        <p>Costruiamo il prossimo<br /><em>racconto visivo.</em></p>
-        <a href={versione2Socials[0].href} target="_blank" rel="noreferrer">
-          Inizia una conversazione <ArrowUpRight aria-hidden="true" />
-        </a>
+        <div>
+          <span className="v2-footer-eyebrow">Cosimo Maietta / Fotografia</span>
+          <p>Ogni storia inizia<br /><em>da uno sguardo.</em></p>
+        </div>
+        <p className="v2-footer-description">Ritratti, moda e storie visive. A Napoli e ovunque il progetto prenda forma.</p>
       </div>
 
       <div className="v2-footer-name" aria-label="Cosimo Maietta">
@@ -60,6 +61,13 @@ export function Versione2Footer() {
             <a href="/#lavori">Lavori</a>
             <Link to="/archivio">Archivio</Link>
             <a href="/#profilo">Profilo</a>
+            <a href="/#servizi">Servizi</a>
+          </nav>
+          <nav aria-label="Contatti">
+            <span>Contatti</span>
+            <a href="/#contatti">Modulo contatti</a>
+            <a href={versione2Socials[0].href} target="_blank" rel="noreferrer">Scrivi su Instagram</a>
+            <span className="v2-footer-location">Napoli, Italia</span>
           </nav>
           <nav aria-label="Canali social">
             <span>Social</span>
@@ -68,7 +76,10 @@ export function Versione2Footer() {
             ))}
           </nav>
         </div>
-        <a className="v2-footer-top" href="#top">Torna su <ArrowUpRight aria-hidden="true" /></a>
+        <div className="v2-footer-legal">
+          <span>© {new Date().getFullYear()} Cosimo Maietta</span>
+          <span>Fotografia / Napoli</span>
+        </div>
       </div>
     </footer>
   );

@@ -4,7 +4,7 @@ Portfolio fotografico di Cosimo Maietta, fotografo a Napoli, dedicato a ritratto
 
 ## Funzionalità
 
-- Home predefinita su `/`, con layout `stories=v2` e `services=v2`.
+- Home predefinita su `/`, con Stories e Services V2 senza parametri nell'URL. Le varianti originali restano disponibili con `?stories=v1&services=v1&lab=1`.
 - Archivio fotografico, pagine progetto e modulo contatti.
 - Varianti visuali selezionabili; gli strumenti di confronto si aprono solo con `lab=1` nell'URL.
 - Immagini locali responsive in AVIF, WebP e JPEG.

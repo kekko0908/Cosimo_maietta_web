@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useState } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { ResponsivePhoto } from './ResponsivePhoto';
@@ -146,7 +146,7 @@ function Works({ variant, immersive = false }: { variant: Versione2Variant; imme
     return (
       <section className="v2-works v2-works-stories" id="lavori">
         <div className="v2-section-heading v2-section-heading-dark v2-stories-heading">
-          <span>Selected stories / V2</span>
+          <span>Selected stories</span>
           <h2>Tre modi di guardare.</h2>
         </div>
         <div className="v2-story-panels">
@@ -489,7 +489,7 @@ function VersionLab({ values, layouts, update, updateLayout }: {
               aria-pressed={layouts[section] === layout}
               onClick={() => updateLayout(section, layout)}
             >
-              {layout === 'v1' ? 'Attuale' : 'V2'}
+              {layout === 'v1' ? 'Originale' : 'V2'}
             </button>
           ))}
         </div>
@@ -500,11 +500,13 @@ function VersionLab({ values, layouts, update, updateLayout }: {
 
 export default function Versione2Page() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  const navigate = useNavigate();
   const hero = readVariant(searchParams.get('hero'), 'archivio');
   const works = readVariant(searchParams.get('works'), 'cinema');
   const profile = readVariant(searchParams.get('profile'), 'cinema');
-  const stories: SectionLayout = searchParams.get('stories') === 'v2' ? 'v2' : 'v1';
-  const services: SectionLayout = searchParams.get('services') === 'v2' ? 'v2' : 'v1';
+  const stories: SectionLayout = searchParams.get('stories') === 'v1' ? 'v1' : 'v2';
+  const services: SectionLayout = searchParams.get('services') === 'v1' ? 'v1' : 'v2';
   const labOpen = searchParams.get('lab') === '1';
 
   useEffect(() => {
@@ -512,15 +514,12 @@ export default function Versione2Page() {
   }, []);
 
   useEffect(() => {
-    const defaults = { stories: 'v2', services: 'v2' };
-    if (Object.keys(defaults).every((key) => searchParams.has(key))) return;
-
+    if (searchParams.get('stories') !== 'v2' && searchParams.get('services') !== 'v2') return;
     const next = new URLSearchParams(searchParams);
-    Object.entries(defaults).forEach(([key, value]) => {
-      if (!next.has(key)) next.set(key, value);
-    });
-    setSearchParams(next, { replace: true });
-  }, [searchParams, setSearchParams]);
+    if (next.get('stories') === 'v2') next.delete('stories');
+    if (next.get('services') === 'v2') next.delete('services');
+    navigate({ pathname: location.pathname, search: next.toString(), hash: location.hash }, { replace: true });
+  }, [location.hash, location.pathname, navigate, searchParams]);
 
   const update = (section: 'hero' | 'works' | 'profile', variant: Versione2Variant) => {
     const next = new URLSearchParams(searchParams);
@@ -531,7 +530,8 @@ export default function Versione2Page() {
 
   const updateLayout = (section: 'stories' | 'services', layout: SectionLayout) => {
     const next = new URLSearchParams(searchParams);
-    next.set(section, layout);
+    if (layout === 'v2') next.delete(section);
+    else next.set(section, layout);
     next.set('lab', '1');
     setSearchParams(next, { replace: true });
   };
