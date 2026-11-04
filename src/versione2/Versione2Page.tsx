@@ -1,18 +1,20 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { ArrowDown, ArrowUpRight } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Pause, Play } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { ResponsivePhoto } from './ResponsivePhoto';
 import { Versione2Footer, Versione2Header } from './Versione2Chrome';
 import {
   versione2Photos,
-  versione2Projects,
   versione2Services,
   versione2Socials,
   type Versione2Project,
   type Versione2Variant,
 } from './content';
-import './versione2.css';
+import { portfolioCollections as versione2Projects, portfolioPhotos, collectionPath } from './collections';
+import { SiteMeta } from './SiteMeta';
+import { siteConfig } from './siteConfig';
+import { ProfessionalLinks } from './ProfessionalLinks';
 
 const variants: Versione2Variant[] = ['rivista', 'cinema', 'archivio'];
 const variantNames: Record<Versione2Variant, string> = {
@@ -42,15 +44,16 @@ const reveal = {
 
 function Hero({ variant }: { variant: Versione2Variant }) {
   const [activePhoto, setActivePhoto] = useState(0);
+  const [paused, setPaused] = useState(false);
   const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (variant !== 'archivio' || shouldReduceMotion) return;
+    if (variant !== 'archivio' || shouldReduceMotion || paused) return;
     const interval = window.setInterval(() => {
       setActivePhoto((current) => (current + 1) % archiveHeroPhotos.length);
     }, 5200);
     return () => window.clearInterval(interval);
-  }, [variant, shouldReduceMotion]);
+  }, [variant, shouldReduceMotion, paused]);
 
   if (variant === 'cinema') {
     return (
@@ -107,9 +110,13 @@ function Hero({ variant }: { variant: Versione2Variant }) {
                 className={index === activePhoto ? 'is-active' : ''}
                 aria-label={`Mostra ${photo.title}`}
                 aria-pressed={index === activePhoto}
-                onClick={() => setActivePhoto(index)}
+                onClick={() => { setActivePhoto(index); setPaused(true); }}
               />
             ))}
+            {!shouldReduceMotion && <button type="button" className="v2-hero-pause" onClick={() => setPaused((value) => !value)}
+              aria-label={paused ? 'Riprendi la rotazione delle fotografie' : 'Metti in pausa la rotazione delle fotografie'}>
+              {paused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
+            </button>}
           </div>
         </div>
       </section>
@@ -136,7 +143,7 @@ function Hero({ variant }: { variant: Versione2Variant }) {
 }
 
 function ProjectLink({ project, search }: { project: Versione2Project; search: string }) {
-  return `/progetti/${project.slug}${search}`;
+  return `${collectionPath(project)}${search}`;
 }
 
 function Works({ variant, immersive = false }: { variant: Versione2Variant; immersive?: boolean }) {
@@ -147,7 +154,7 @@ function Works({ variant, immersive = false }: { variant: Versione2Variant; imme
       <section className="v2-works v2-works-stories" id="lavori">
         <div className="v2-section-heading v2-section-heading-dark v2-stories-heading">
           <span>Selected stories</span>
-          <h2>Tre modi di guardare.</h2>
+          <h2>Sei modi di guardare.</h2>
         </div>
         <div className="v2-story-panels">
           {versione2Projects.map((project, index) => (
@@ -194,14 +201,15 @@ function Works({ variant, immersive = false }: { variant: Versione2Variant; imme
           <h2>Archivio selezionato</h2>
         </div>
         <div className="v2-contact-sheet">
-          {versione2Projects.flatMap((project) =>
-            project.photos.map((photo, index) => (
+          {portfolioPhotos.map((photo, index) => {
+            const project = versione2Projects.find((item) => photo.themes.includes(item.slug))!;
+            return (
               <Link key={photo.id} to={ProjectLink({ project, search: location.search })} className="v2-contact-item">
                 <ResponsivePhoto photo={photo} sizes="(max-width: 600px) 50vw, (max-width: 1100px) 25vw, 16vw" />
                 <span>{String(index + 1).padStart(2, '0')} / {photo.title}</span>
               </Link>
-            )),
-          )}
+            );
+          })}
         </div>
       </section>
     );
@@ -212,7 +220,7 @@ function Works({ variant, immersive = false }: { variant: Versione2Variant; imme
       <section className="v2-works v2-works-cinema" id="lavori">
         <div className="v2-section-heading v2-section-heading-dark v2-cinema-heading">
           <span>Selected stories</span>
-          <h2>Tre modi di guardare.</h2>
+          <h2>Sei modi di guardare.</h2>
         </div>
         <div className="v2-cinema-projects">
           {versione2Projects.map((project) => (
@@ -276,6 +284,7 @@ function Profile({ variant }: { variant: Versione2Variant }) {
           <p>Fotografo con base a Napoli. Il suo lavoro attraversa ritratto, moda, scena e racconto dei luoghi, alternando rigore e intuizione.</p>
           <div><span>Base</span><strong>Napoli, Italia</strong></div>
           <div><span>Ricerca</span><strong>Volto, luce, presenza</strong></div>
+          <Link className="v2-profile-profession" to="/geometra/cantieri">Professione e fotografia <ArrowUpRight aria-hidden="true" /></Link>
         </motion.div>
       </section>
     );
@@ -388,20 +397,27 @@ type SubmitStatus = 'idle' | 'sending' | 'success' | 'error';
 function Contact() {
   const [status, setStatus] = useState<SubmitStatus>('idle');
   const [message, setMessage] = useState('');
+  const [draft, setDraft] = useState('');
+  const [searchParams] = useSearchParams();
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const endpoint = import.meta.env.VITE_CONTACT_API_URL;
-
-    if (!endpoint) {
-      setStatus('error');
-      setMessage('Il modulo è pronto, ma l’endpoint non è ancora configurato. Puoi contattare Cosimo su Instagram.');
-      return;
-    }
-
+    const endpoint = siteConfig.contactEndpoint;
     const form = event.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
     if (data.website) return;
+    if (!endpoint) {
+      const text = `Richiesta per Cosimo Maietta\n\nNome: ${data.name}\nEmail: ${data.email}\nAmbito: ${data.projectType}\nBrand / Studio: ${data.brand || '—'}\nPeriodo: ${data.date || 'Da definire'}\nBudget: ${data.budget}\n\n${data.message}`;
+      try {
+        await navigator.clipboard.writeText(text);
+        setDraft(''); setStatus('success');
+        setMessage('Messaggio copiato. Puoi incollarlo nella conversazione su Instagram.');
+      } catch {
+        setDraft(text); setStatus('idle');
+        setMessage('Il messaggio è pronto: copialo qui sotto e invialo a Cosimo.');
+      }
+      return;
+    }
 
     setStatus('sending');
     setMessage('Invio in corso…');
@@ -428,6 +444,7 @@ function Contact() {
         <h2>Hai un’immagine<br />in mente?</h2>
         <p>Racconta il progetto, le date e il contesto. Poche informazioni, una conversazione concreta.</p>
         <a href={versione2Socials[0].href} target="_blank" rel="noreferrer">Scrivi su Instagram <ArrowUpRight aria-hidden="true" /></a>
+        <ProfessionalLinks />
       </div>
       <form className="v2-contact-form" onSubmit={submit}>
         <div className="v2-form-heading">
@@ -439,15 +456,17 @@ function Contact() {
           <label>Nome<input name="name" autoComplete="name" required /></label>
           <label>Email<input name="email" type="email" autoComplete="email" required /></label>
           <label>Brand / Studio<input name="brand" autoComplete="organization" /></label>
-          <label>Tipo di progetto<select name="projectType" defaultValue="Editoriale"><option>Editoriale</option><option>Ritratto</option><option>Fashion / Beauty</option><option>Evento / Backstage</option><option>Altro</option></select></label>
+          <label>Tipo di progetto<select key={searchParams.get('richiesta')} name="projectType" defaultValue={searchParams.get('richiesta') === 'geometra' ? 'Geometra / Cantiere' : 'Editoriale'}><option>Editoriale</option><option>Ritratto</option><option>Fashion / Beauty</option><option>Evento / Backstage</option><option>Geometra / Cantiere</option><option>Altro</option></select></label>
           <label>Periodo<input name="date" placeholder="Mese o data indicativa" /></label>
           <label>Budget indicativo<select name="budget" defaultValue="Da definire"><option>Da definire</option><option>Fino a €500</option><option>€500–1.500</option><option>€1.500–3.000</option><option>Oltre €3.000</option></select></label>
         </div>
         <label>Brief<textarea name="message" rows={5} required placeholder="Obiettivo, utilizzo delle immagini, location e numero di scatti." /></label>
         <label className="v2-honeypot" aria-hidden="true">Sito web<input name="website" tabIndex={-1} autoComplete="off" /></label>
-        <label className="v2-consent"><input name="consent" type="checkbox" value="accepted" required /><span>Acconsento al trattamento dei dati per la gestione della mia richiesta.</span></label>
-        <button type="submit" disabled={status === 'sending'}>Invia la richiesta <ArrowUpRight aria-hidden="true" /></button>
+        <label className="v2-consent"><input name="consent" type="checkbox" value="accepted" required /><span>Ho letto le <Link to="/privacy">informazioni sul trattamento dei dati</Link> per la gestione della mia richiesta.</span></label>
+        <button type="submit" disabled={status === 'sending'}>{siteConfig.contactEndpoint ? 'Invia la richiesta' : 'Copia la richiesta'} <ArrowUpRight aria-hidden="true" /></button>
+        {!siteConfig.contactEndpoint && <p className="v2-form-help">Prepara il messaggio e invialo a Cosimo su Instagram.</p>}
         <p className={`v2-form-status is-${status}`} role="status" aria-live="polite">{message}</p>
+        {draft && <label>Messaggio pronto<textarea readOnly value={draft} rows={8} onFocus={(event) => event.currentTarget.select()} /></label>}
       </form>
     </section>
   );
@@ -510,10 +529,6 @@ export default function Versione2Page() {
   const labOpen = searchParams.get('lab') === '1';
 
   useEffect(() => {
-    document.title = 'Cosimo Maietta — Portrait & Editorial Photographer';
-  }, []);
-
-  useEffect(() => {
     if (searchParams.get('stories') !== 'v2' && searchParams.get('services') !== 'v2') return;
     const next = new URLSearchParams(searchParams);
     if (next.get('stories') === 'v2') next.delete('stories');
@@ -538,6 +553,7 @@ export default function Versione2Page() {
 
   return (
     <div className="v2-site">
+      <SiteMeta title="Portrait & Editorial Photographer" description="Cosimo Maietta: ritratti, sala posa, storie in esterna, bianco e nero, paesaggi e uno sguardo sulla professione da geometra." />
       <Versione2Header />
       <main id="v2-content">
         <Hero variant={hero} />

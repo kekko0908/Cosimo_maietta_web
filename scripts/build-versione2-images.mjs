@@ -1,10 +1,11 @@
-import { mkdir, readdir } from 'node:fs/promises';
+import { mkdir, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
 
 const sourceDirectory = path.resolve('src/assets/versione2/source');
 const outputDirectory = path.resolve('public/media/cosimo');
 const requestedWidths = [480, 768, 1080, 1440, 1920];
+const manifest = {};
 
 await mkdir(outputDirectory, { recursive: true });
 
@@ -26,6 +27,7 @@ for (const sourceFile of sourceFiles) {
     ...requestedWidths.filter((width) => width < metadata.width),
     metadata.width,
   ])].sort((a, b) => a - b);
+  manifest[basename] = { width: metadata.width, height: metadata.height, widths };
 
   for (const width of widths) {
     const pipeline = image
@@ -51,3 +53,5 @@ for (const sourceFile of sourceFiles) {
 
   console.log(`${sourceFile}: ${metadata.width}x${metadata.height} -> ${widths.join(', ')}w`);
 }
+
+await writeFile('src/versione2/image-manifest.json', JSON.stringify(manifest, null, 2) + '\n');

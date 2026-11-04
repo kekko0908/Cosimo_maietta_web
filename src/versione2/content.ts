@@ -1,3 +1,5 @@
+import imageManifest from './image-manifest.json';
+
 export type Versione2Variant = 'rivista' | 'cinema' | 'archivio';
 
 export interface Versione2Photo {
@@ -33,9 +35,9 @@ const photo = (
   id,
   title,
   alt,
-  width,
-  height,
-  widths: width > 800 ? [480, 768, width] : [480, width],
+  width: imageManifest[id as keyof typeof imageManifest]?.width ?? width,
+  height: imageManifest[id as keyof typeof imageManifest]?.height ?? height,
+  widths: imageManifest[id as keyof typeof imageManifest]?.widths ?? (width > 800 ? [480, 768, width] : [480, width]),
   focalPoint,
   sourceUrl: flickr(id),
 });
@@ -53,7 +55,7 @@ export const versione2Photos = {
   cri: photo('55305149439', 'Cri', 'Ritratto editoriale della serie Cri', 680, 1024, '50% 34%'),
   cricri02: photo('55304911276', 'CriCri II', 'Studio di posa della serie CriCri', 681, 1024, '50% 30%'),
   cricri03: photo('55304008347', 'CriCri III', 'Ritratto fotografico della serie CriCri', 680, 1024, '50% 35%'),
-  cricri04: photo('55303998932', 'CriCri IV', 'Ritratto editoriale a colori della serie CriCri', 680, 1024, '50% 32%'),
+  cricri04: photo('55303998932', 'CriCri IV', 'Ritratto editoriale della serie CriCri', 680, 1024, '50% 32%'),
   kikka01: photo('55305313455', 'Kikka I', 'Ritratto fashion della serie Kikka', 680, 1024, '50% 34%'),
   kikka02: photo('55303998927', 'Kikka II', 'Ritratto in luce naturale della serie Kikka', 680, 1024, '50% 32%'),
   patrik: photo('54475975706', 'Patrik', 'Ritratto ambientato della serie Patrik', 680, 1024, '50% 38%'),

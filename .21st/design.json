@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "project": {
+    "name": "cosimo-maietta-web",
+    "productType": "photography-portfolio",
+    "stack": [
+      "react",
+      "tailwind-v4",
+      "vite"
+    ]
+  },
+  "sources": {
+    "tokens": [
+      "src/index.css",
+      "src/versione2/versione2.css"
+    ],
+    "components": [],
+    "assets": [
+      "src/assets"
+    ],
+    "instructions": []
+  },
+  "design": {
+    "colorMode": "light",
+    "colors": {
+      "--v2-paper": { "value": "#f0ece3", "source": "src/versione2/versione2.css" },
+      "--v2-ink": { "value": "#151311", "source": "src/versione2/versione2.css" },
+      "--v2-red": { "value": "#6b2026", "source": "src/versione2/versione2.css" }
+    },
+    "typography": {
+      "--font-sans": {
+        "value": "\"Inter\", ui-sans-serif, system-ui, sans-serif",
+        "source": "src/index.css"
+      },
+      "--font-serif": {
+        "value": "\"Playfair Display\", ui-serif, Georgia, Cambria, \"Times New Roman\", Times, serif",
+        "source": "src/index.css"
+      }
+    },
+    "spacing": {},
+    "radius": {},
+    "shadows": {},
+    "motion": {},
+    "density": "unknown"
+  },
+  "components": {
+    "installed": [],
+    "preferredPrimitives": [],
+    "patterns": []
+  },
+  "constraints": {
+    "must": ["Preserve existing copy and editorial photography direction", "Large photographs, paper background, serif titles", "Keyboard, touch and reduced-motion support"],
+    "avoid": ["Generic card grids for editorial collections", "Decorative gradients or glass effects", "Automatic audio playback"]
+  },
+  "decisions": ["Keep Inter and Playfair Display, existing paper/ink/red palette, Stories and Services V2", "Six thematic pages with shared navigation and distinct photographic rhythm", "Only the home uses the name as its large identifying title"],
+  "evidence": [
+    {
+      "fact": "design.colorMode:light",
+      "source": "src/index.css"
+    },
+    {
+      "fact": "design.tokens",
+      "source": "src/index.css"
+    },
+    {
+      "fact": "project.stack:react",
+      "source": "package.json"
+    },
+    {
+      "fact": "project.stack:tailwind-v4",
+      "source": "package.json"
+    },
+    {
+      "fact": "project.stack:vite",
+      "source": "package.json"
+    }
+  ],
+  "generatedAt": "2026-11-04T15:29:44.442Z"
+}

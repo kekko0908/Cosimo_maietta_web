@@ -1,0 +1,39 @@
+[
+  {
+    "slug": "primi-piani", "path": "/fotografia/primi-piani", "index": "01", "label": "Primi piani",
+    "title": "A distanza di sguardo", "eyebrow": "Ritratto · Dettagli", "layout": "close",
+    "description": "Una ricerca sul volto, sul contrasto e sulla presenza. La luce riduce la scena all’essenziale e lascia parlare lo sguardo.",
+    "photoIds": ["55308600189", "55308363611", "55308531498", "54475975711", "55304911276", "54287558454", "55304008347", "51892675726", "55305149439", "55308371021"]
+  },
+  {
+    "slug": "sala-posa", "path": "/fotografia/sala-posa", "index": "02", "label": "Sala posa",
+    "title": "Dentro la luce", "eyebrow": "Studio · Ritratto editoriale", "layout": "studio",
+    "description": "Ritratti costruiti attraverso gesto, styling e prossimità. Ogni immagine cerca un equilibrio tra precisione e spontaneità.",
+    "photoIds": ["55308371021", "55308370996", "54231809030", "55308371061", "53579138809", "55304008347", "53575860532", "54476170594", "55308531498"]
+  },
+  {
+    "slug": "in-esterna", "path": "/fotografia/in-esterna", "index": "03", "label": "In esterna",
+    "title": "Figure e luoghi", "eyebrow": "On location · Story", "layout": "outdoor",
+    "description": "Figure, materia e paesaggio entrano nella stessa inquadratura. Un racconto più aperto, guidato dalla luce disponibile.",
+    "photoIds": ["51891431956", "55308363656", "55629604522", "55308371026", "54286435092", "54475975706", "55630736283", "55303998927", "54287747455", "53577050404"]
+  },
+  {
+    "slug": "bianco-e-nero", "path": "/fotografia/bianco-e-nero", "index": "04", "label": "Bianco e nero",
+    "title": "Volti monocromatici", "eyebrow": "Ritratto · Bianco e nero", "layout": "monochrome",
+    "description": "Una ricerca sul volto, sul contrasto e sulla presenza. La luce riduce la scena all’essenziale e lascia parlare lo sguardo.",
+    "photoIds": ["55308531498", "55308370996", "55308600189", "55308371021", "55304911276", "55304008347", "55308371026", "55308363656", "55303998927", "54286435092", "54476170594", "54287747455"]
+  },
+  {
+    "slug": "paesaggi", "path": "/fotografia/paesaggi", "index": "05", "label": "Paesaggi",
+    "title": "Orizzonti vicini", "eyebrow": "Paesaggio · Luce naturale", "layout": "landscape",
+    "description": "Il mare, i luoghi e la luce disponibile. Una ricerca fotografica che lascia spazio al paesaggio e ai suoi dettagli.",
+    "photoIds": ["32589307800", "32816057272", "33341349306", "32845938781", "32845314431", "32815854362", "32929515476", "32155657223", "32589408170", "18245661161", "32845963731", "32845813191"]
+  },
+  {
+    "slug": "cantieri", "path": "/geometra/cantieri", "index": "06", "label": "Cantieri",
+    "title": "Geometrie del lavoro", "eyebrow": "Geometra · Spazi e materia", "layout": "work",
+    "description": "Geometra per professione, fotografo per passione. Due attività che si incontrano nell’attenzione allo spazio, alla materia e alla luce.",
+    "previewNote": "Architetture e dettagli · selezione di studio",
+    "photoIds": ["23206334480", "23475988346", "36923130525", "36526506550", "36115008293", "36114617263", "32589334430", "32156089163"]
+  }
+]

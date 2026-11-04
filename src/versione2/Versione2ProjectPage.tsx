@@ -1,11 +1,10 @@
-import { useEffect } from 'react';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { Link, useLocation, useParams, useSearchParams } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Versione2Footer } from './Versione2Chrome';
 import { ResponsivePhoto } from './ResponsivePhoto';
 import { versione2Projects, type Versione2Project } from './content';
-import './versione2.css';
+import { SiteMeta } from './SiteMeta';
 
 type GalleryVariant = 'editoriale' | 'dittico' | 'sequenza';
 
@@ -51,15 +50,10 @@ export default function Versione2ProjectPage() {
   const gallery = readGalleryVariant(searchParams.get('gallery'));
   const labOpen = searchParams.get('lab') === '1';
 
-  useEffect(() => {
-    document.title = project
-      ? `${project.title} — Cosimo Maietta`
-      : 'Progetto non trovato — Cosimo Maietta';
-  }, [project]);
-
   if (!project) {
     return (
       <main className="v2-site v2-project-missing">
+        <SiteMeta title="Progetto non trovato" description="Questa storia non è disponibile. Esplora il portfolio fotografico di Cosimo Maietta." />
         <span>404 / Progetto non trovato</span>
         <h1>Questa storia non è disponibile.</h1>
         <Link to={`/${location.search}`}>Torna al portfolio</Link>
@@ -77,6 +71,7 @@ export default function Versione2ProjectPage() {
 
   return (
     <div className="v2-site v2-project-page" id="top">
+      <SiteMeta title={project.title} description={project.description} image={`/media/cosimo/${project.photos[0].id}-1080.jpg`} />
       <header className="v2-project-header">
         <Link to={`/${location.search}`}><ArrowLeft aria-hidden="true" /> Portfolio</Link>
         <span>Cosimo Maietta</span>
