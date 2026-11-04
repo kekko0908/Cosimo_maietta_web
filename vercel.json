@@ -5,6 +5,7 @@
   "routes": [
     { "src": "^/archivio/?$", "dest": "/archivio/index.html" },
     { "src": "^/privacy/?$", "dest": "/privacy/index.html" },
+    { "src": "^/chi-sono/?$", "dest": "/chi-sono/index.html" },
     { "src": "^/geometra/cantieri/?$", "dest": "/geometra/cantieri/index.html" },
     { "src": "^/fotografia/(primi-piani|sala-posa|in-esterna|bianco-e-nero|paesaggi)/?$", "dest": "/fotografia/$1/index.html" },
     { "handle": "filesystem" },

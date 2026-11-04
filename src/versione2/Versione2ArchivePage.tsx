@@ -4,7 +4,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Versione2Footer, Versione2Header } from './Versione2Chrome';
 import { ResponsivePhoto } from './ResponsivePhoto';
-import { versione2Photos } from './content';
+import { EditorialRule } from './EditorialRule';
 import { portfolioCollections, portfolioPhotos } from './collections';
 import { SiteMeta } from './SiteMeta';
 
@@ -21,34 +21,15 @@ export default function Versione2ArchivePage() {
   };
 
   return (
-    <div className="v2-site v2-archive-page">
+    <div className="v2-site ed-archive-page">
       <SiteMeta title="Archivio fotografico" description="Esplora tutte le fotografie di Cosimo Maietta per primi piani, sala posa, esterna, bianco e nero, paesaggi e architetture." />
       <Versione2Header />
       <main id="v2-content">
-        <section className="v2-archive-page-hero" id="top">
-          <motion.div
-            className="v2-archive-page-title"
-            initial={{ opacity: 0, y: 38 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <h1>Archivio<br /><em>fotografico</em></h1>
-          </motion.div>
-          <div className="v2-archive-page-collage" aria-label="Anteprima dell’archivio">
-            <motion.div className="v2-archive-collage-main" initial={{ clipPath: 'inset(0 100% 0 0)' }} animate={{ clipPath: 'inset(0 0% 0 0)' }} transition={{ duration: 1.05, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}>
-              <ResponsivePhoto photo={versione2Photos.ann03} sizes="(max-width: 760px) 76vw, 34vw" priority />
-            </motion.div>
-            <motion.div className="v2-archive-collage-landscape" initial={{ opacity: 0, x: 42 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.85, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}>
-              <ResponsivePhoto photo={versione2Photos.eyes02} sizes="(max-width: 760px) 58vw, 25vw" priority />
-            </motion.div>
-            <motion.div className="v2-archive-collage-small" initial={{ opacity: 0, y: 42 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.75, ease: [0.22, 1, 0.36, 1] }}>
-              <ResponsivePhoto photo={versione2Photos.cricri04} sizes="(max-width: 760px) 34vw, 13vw" priority />
-            </motion.div>
-          </div>
-          <div className="v2-archive-page-note">
-            <p>Ritratti, studi di luce e storie in esterna. Una lettura completa del lavoro oltre le singole serie.</p>
-            <a href="#archivio-fotografico">Esplora tutte le immagini <ArrowDown aria-hidden="true" /></a>
-          </div>
+        <section className="ed-archive-opening" id="top">
+          <span className="ed-eyebrow">Indice generale / Tutti i percorsi</span>
+          <h1>Archivio<br /><em>fotografico.</em></h1>
+          <p>Ritratti, studi di luce e storie in esterna. Una lettura completa del lavoro oltre le singole serie.</p>
+          <EditorialRule />
         </section>
 
         <section className="v2-archive-gallery" id="archivio-fotografico" aria-labelledby="archive-heading">

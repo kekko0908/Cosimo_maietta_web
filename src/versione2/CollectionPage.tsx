@@ -1,32 +1,43 @@
-import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { ArrowDown, ArrowLeft, ArrowUpRight, Plus } from 'lucide-react';
-import { motion } from 'motion/react';
-import { portfolioCollections } from './collections';
-import { Versione2Footer, Versione2Header } from './Versione2Chrome';
-import { ResponsivePhoto } from './ResponsivePhoto';
-import { PhotoViewer } from './PhotoViewer';
-import { CollectionNavigation } from './CollectionNavigation';
-import { ProfessionalLinks } from './ProfessionalLinks';
-import { Interview } from './Interview';
-import { SiteMeta } from './SiteMeta';
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import {
+  ArrowDown,
+  ArrowLeft,
+  ArrowRight,
+  ArrowUpRight,
+  Plus,
+} from "lucide-react";
+import { motion } from "motion/react";
+import { portfolioCollections } from "./collections";
+import { Versione2Footer, Versione2Header } from "./Versione2Chrome";
+import { ResponsivePhoto } from "./ResponsivePhoto";
+import { PhotoViewer } from "./PhotoViewer";
+import { CollectionNavigation } from "./CollectionNavigation";
+import { CollectionGallery } from "./CollectionGallery";
+import { EditorialRule } from "./EditorialRule";
+import { ProfessionalLinks } from "./ProfessionalLinks";
+import { Interview } from "./Interview";
+import { SiteMeta } from "./SiteMeta";
 
-export default function CollectionPage({ collectionSlug }: { collectionSlug?: string }) {
+export default function CollectionPage({
+  collectionSlug,
+}: {
+  collectionSlug?: string;
+}) {
   const { slug } = useParams<{ slug: string }>();
-  const collection = portfolioCollections.find((item) => item.slug === (collectionSlug ?? slug));
+  const collection = portfolioCollections.find(
+    (item) => item.slug === (collectionSlug ?? slug),
+  );
   const [viewer, setViewer] = useState<number | null>(null);
-  const [visible, setVisible] = useState(8);
   useEffect(() => {
-    setVisible(8);
     setViewer(null);
   }, [collection?.slug]);
-
   if (!collection)
     return (
       <div className="v2-site">
         <SiteMeta
           title="Pagina non trovata"
-          description="Questo percorso non è disponibile. Esplora l’archivio fotografico di Cosimo Maietta."
+          description="Questo percorso non è disponibile. Esplora l’archivio fotografico."
         />
         <Versione2Header />
         <main id="v2-content" className="v2-project-missing">
@@ -37,17 +48,18 @@ export default function CollectionPage({ collectionSlug }: { collectionSlug?: st
         <Versione2Footer />
       </div>
     );
-
-  const work = collection.slug === 'cantieri';
+  const work = collection.slug === "cantieri";
   const currentIndex = portfolioCollections.indexOf(collection);
-  const next = portfolioCollections[(currentIndex + 1) % portfolioCollections.length];
-  const previous =
+  const adjacent = [
     portfolioCollections[
-      (currentIndex - 1 + portfolioCollections.length) % portfolioCollections.length
-    ];
+      (currentIndex - 1 + portfolioCollections.length) %
+        portfolioCollections.length
+    ],
+    portfolioCollections[(currentIndex + 1) % portfolioCollections.length],
+  ];
   const hero = collection.photos[0];
   return (
-    <div className={`v2-site v2-collection-page collection-${collection.layout}`}>
+    <div className={`v2-site ed-collection-page ed-theme-${collection.layout}`}>
       <SiteMeta
         title={collection.title}
         description={collection.description}
@@ -56,131 +68,120 @@ export default function CollectionPage({ collectionSlug }: { collectionSlug?: st
       <Versione2Header />
       <main id="v2-content">
         <CollectionNavigation />
-        <section className="v2-collection-hero" aria-labelledby="collection-title">
+        <section
+          className="ed-collection-opening"
+          aria-labelledby="collection-title"
+        >
           <motion.div
-            className="v2-collection-intro"
+            className="ed-opening-copy"
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65 }}
           >
-            <span className="v2-kicker">
-              {collection.index} / {collection.eyebrow}
-            </span>
+            <span className="ed-eyebrow">{collection.eyebrow}</span>
             <h1 id="collection-title">{collection.title}</h1>
             <p>{collection.description}</p>
-            {collection.previewNote && (
-              <small className="v2-collection-note">{collection.previewNote}</small>
-            )}
-            <a href="#fotografie" className="v2-collection-explore">
-              {String(collection.photos.length).padStart(2, '0')} fotografie
-              <ArrowDown aria-hidden="true" />
-            </a>
-            {work && (
-              <a className="v2-interview-jump" href="#intervista">
-                Guarda la conversazione <ArrowUpRight aria-hidden="true" />
+            {collection.previewNote && <small>{collection.previewNote}</small>}
+            <div className="ed-opening-links">
+              <a href="#selezione">
+                La selezione <ArrowDown aria-hidden="true" />
               </a>
-            )}
+              <a href="#fotografie">
+                Tutte le fotografie <span>({collection.photos.length})</span>
+              </a>
+            </div>
           </motion.div>
-          <motion.figure
-            className="v2-collection-cover"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.7 }}
-          >
+          <figure className="ed-opening-photo">
+            <span className="ed-opening-folio" aria-hidden="true">
+              01
+            </span>
             <button
               type="button"
               onClick={() => setViewer(0)}
               aria-label={`Apri ${hero.title} a schermo intero`}
             >
-              <ResponsivePhoto photo={hero} sizes="(max-width: 900px) 92vw, 55vw" priority />
-              <Plus className="v2-enlarge" aria-hidden="true" />
+              <ResponsivePhoto
+                photo={hero}
+                sizes="(max-width: 700px) 80vw, 42vw"
+                priority
+              />
+              <Plus className="ed-photo-open" aria-hidden="true" />
             </button>
-            <figcaption>
-              <span>{hero.title}</span>
-              <span>© Cosimo Maietta</span>
-            </figcaption>
-          </motion.figure>
+            <figcaption>{hero.title}</figcaption>
+          </figure>
+          <EditorialRule />
         </section>
-
-        {work && <Interview />}
-
-        <section id="fotografie" className="v2-editorial-gallery" aria-labelledby="gallery-heading">
-          <div className="v2-gallery-heading">
-            <h2 id="gallery-heading">{collection.label}</h2>
-            <span>Una selezione / {collection.photos.length} immagini</span>
-          </div>
-          <div className="v2-editorial-frames">
-            {collection.photos.slice(1, visible).map((photo, index) => (
-              <motion.figure
-                key={photo.id}
-                className={`v2-editorial-frame frame-${index % 5} ${photo.width > photo.height ? 'is-landscape' : 'is-portrait'}`}
-                initial={{ opacity: 0, y: 22 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.12 }}
-                transition={{ duration: 0.6 }}
-              >
-                <button
-                  type="button"
-                  onClick={() => setViewer(index + 1)}
-                  aria-label={`Apri ${photo.title} a schermo intero`}
-                >
-                  <ResponsivePhoto photo={photo} sizes="(max-width: 700px) 92vw, 55vw" />
-                  <Plus className="v2-enlarge" aria-hidden="true" />
-                </button>
-                <figcaption>
-                  <span>
-                    {String(index + 2).padStart(2, '0')} / {photo.title}
-                  </span>
-                  <span>© Cosimo Maietta</span>
-                </figcaption>
-              </motion.figure>
-            ))}
-          </div>
-          {visible < collection.photos.length && (
-            <button
-              className="v2-load-more"
-              type="button"
-              onClick={() => setVisible((count) => count + 8)}
-            >
-              Altre fotografie <Plus aria-hidden="true" />
-              <span>{collection.photos.length - visible} da guardare</span>
-            </button>
-          )}
-        </section>
-
+        <div key={collection.slug}>
+          <CollectionGallery
+            photos={collection.photos}
+            label={collection.label}
+            onOpen={setViewer}
+          />
+        </div>
         {work && (
-          <section className="v2-profession-contact" aria-labelledby="profession-contact-title">
-            <div>
-              <span className="v2-kicker">Geometra / Contatti</span>
-              <h2 id="profession-contact-title">
-                Parliamo del
-                <br />
-                <em>tuo progetto.</em>
-              </h2>
-              <Link to="/?richiesta=geometra#contatti">
-                Scrivi per l’attività da geometra <ArrowUpRight aria-hidden="true" />
-              </Link>
-            </div>
-            <ProfessionalLinks />
-          </section>
+          <>
+            <Interview />
+            <section
+              className="v2-profession-contact"
+              aria-labelledby="profession-contact-title"
+            >
+              <div>
+                <span className="ed-eyebrow">Geometra / Contatti</span>
+                <h2 id="profession-contact-title">
+                  Parliamo del
+                  <br />
+                  <em>tuo progetto.</em>
+                </h2>
+                <Link to="/?richiesta=geometra#contatti">
+                  Scrivi per l’attività da geometra{" "}
+                  <ArrowUpRight aria-hidden="true" />
+                </Link>
+              </div>
+              <ProfessionalLinks />
+            </section>
+          </>
         )}
-
-        <nav className="v2-collection-next" aria-label="Continua tra i percorsi">
-          <Link to={previous.path} className="v2-previous-collection">
-            <ArrowLeft aria-hidden="true" />
-            <span>
-              Precedente<em>{previous.label}</em>
-            </span>
-          </Link>
-          <Link to={next.path} className="v2-next-collection">
-            <div>
-              <span>Prossimo percorso / {next.index}</span>
-              <h2>{next.title}</h2>
-              <ArrowUpRight aria-hidden="true" />
-            </div>
-            <ResponsivePhoto photo={next.photos[0]} sizes="(max-width: 700px) 42vw, 30vw" />
-          </Link>
-        </nav>
+        <section
+          className="ed-other-stories"
+          aria-labelledby="other-stories-title"
+        >
+          <header>
+            <span className="ed-eyebrow">Cambiare prospettiva</span>
+            <h2 id="other-stories-title">Altri percorsi.</h2>
+            <Link to="/archivio">
+              Torna all’archivio <ArrowUpRight aria-hidden="true" />
+            </Link>
+          </header>
+          <nav
+            aria-label="Serie precedente e successiva"
+            className="ed-story-directions"
+          >
+            {adjacent.map((item, index) => (
+              <Link
+                key={item.slug}
+                to={item.path}
+                className="ed-story-direction"
+              >
+                <span className="ed-story-direction-label">
+                  {index === 0 ? (
+                    <ArrowLeft aria-hidden="true" />
+                  ) : (
+                    <ArrowRight aria-hidden="true" />
+                  )}
+                  {index === 0 ? "Serie precedente" : "Serie successiva"}
+                </span>
+                <div className="ed-story-direction-copy">
+                  <span>{item.index}</span>
+                  <h3>{item.title}</h3>
+                </div>
+                <ResponsivePhoto
+                  photo={item.photos[0]}
+                  sizes="(max-width: 700px) 25vw, 16vw"
+                />
+              </Link>
+            ))}
+          </nav>
+        </section>
       </main>
       <Versione2Footer />
       <PhotoViewer

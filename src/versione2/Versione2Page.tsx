@@ -15,6 +15,8 @@ import { portfolioCollections as versione2Projects, portfolioPhotos, collectionP
 import { SiteMeta } from './SiteMeta';
 import { siteConfig } from './siteConfig';
 import { ProfessionalLinks } from './ProfessionalLinks';
+import { EditorialServices } from './EditorialServices';
+import { EditorialStories } from './EditorialStories';
 
 const variants: Versione2Variant[] = ['rivista', 'cinema', 'archivio'];
 const variantNames: Record<Versione2Variant, string> = {
@@ -149,50 +151,7 @@ function ProjectLink({ project, search }: { project: Versione2Project; search: s
 function Works({ variant, immersive = false }: { variant: Versione2Variant; immersive?: boolean }) {
   const location = useLocation();
 
-  if (immersive) {
-    return (
-      <section className="v2-works v2-works-stories" id="lavori">
-        <div className="v2-section-heading v2-section-heading-dark v2-stories-heading">
-          <span>Selected stories</span>
-          <h2>Sei modi di guardare.</h2>
-        </div>
-        <div className="v2-story-panels">
-          {versione2Projects.map((project, index) => (
-            <motion.article
-              key={project.slug}
-              className={`v2-story-panel story-${index + 1}`}
-              initial={{ opacity: 0, y: 72 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.16 }}
-              transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <Link to={ProjectLink({ project, search: location.search })} aria-label={`Apri ${project.title}`}>
-                <div className="v2-story-copy">
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                  <ArrowUpRight aria-hidden="true" />
-                </div>
-                <div className="v2-story-images">
-                  {project.photos.slice(0, 3).map((photo, photoIndex) => (
-                    <motion.div
-                      key={photo.id}
-                      className={`v2-story-image image-${photoIndex + 1}`}
-                      initial={{ opacity: 0, y: 52 + photoIndex * 18, scale: 1.035 }}
-                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                      viewport={{ once: true, amount: 0.2 }}
-                      transition={{ duration: 1, delay: photoIndex * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                      <ResponsivePhoto photo={photo} sizes="(max-width: 760px) 72vw, 34vw" />
-                    </motion.div>
-                  ))}
-                </div>
-              </Link>
-            </motion.article>
-          ))}
-        </div>
-      </section>
-    );
-  }
+  if (immersive) return <EditorialStories />;
 
   if (variant === 'archivio') {
     return (
@@ -284,7 +243,7 @@ function Profile({ variant }: { variant: Versione2Variant }) {
           <p>Fotografo con base a Napoli. Il suo lavoro attraversa ritratto, moda, scena e racconto dei luoghi, alternando rigore e intuizione.</p>
           <div><span>Base</span><strong>Napoli, Italia</strong></div>
           <div><span>Ricerca</span><strong>Volto, luce, presenza</strong></div>
-          <Link className="v2-profile-profession" to="/geometra/cantieri">Professione e fotografia <ArrowUpRight aria-hidden="true" /></Link>
+          <Link className="v2-profile-profession" to="/chi-sono">Leggi chi sono <ArrowUpRight aria-hidden="true" /></Link>
         </motion.div>
       </section>
     );
@@ -320,53 +279,8 @@ function Profile({ variant }: { variant: Versione2Variant }) {
   );
 }
 
-const servicePhotos = [versione2Photos.ann02, versione2Photos.cricri01, versione2Photos.sea];
-
 function Services({ interactive = false }: { interactive?: boolean }) {
-  const [activeService, setActiveService] = useState(0);
-
-  if (interactive) {
-    return (
-      <section className="v2-services v2-services-hover" id="servizi">
-        <motion.div className="v2-services-title" {...reveal}>
-          <h2>Una visione,<br /><em>costruita insieme.</em></h2>
-          <p>Passa sui tre ambiti per cambiare ritmo, immagine e racconto. La produzione resta costruita attorno al progetto.</p>
-          <a href="#contatti">Racconta il progetto <ArrowDown aria-hidden="true" /></a>
-        </motion.div>
-        <div className="v2-services-stage">
-          <AnimatePresence initial={false} mode="sync">
-            <motion.div
-              className="v2-services-preview"
-              key={servicePhotos[activeService].id}
-              initial={{ opacity: 0, x: 28, scale: 1.025 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              exit={{ opacity: 0, x: -22, scale: 1.01 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <ResponsivePhoto photo={servicePhotos[activeService]} sizes="(max-width: 760px) 92vw, 48vw" />
-            </motion.div>
-          </AnimatePresence>
-          <div className="v2-services-hover-list">
-            {versione2Services.map((service, index) => (
-              <button
-                type="button"
-                key={service.index}
-                className={index === activeService ? 'is-active' : ''}
-                aria-pressed={index === activeService}
-                onPointerEnter={() => setActiveService(index)}
-                onFocus={() => setActiveService(index)}
-                onClick={() => setActiveService(index)}
-              >
-                <span>{service.title}</span>
-                <small>{service.details.join(' · ')}</small>
-                <ArrowUpRight aria-hidden="true" />
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
+  if (interactive) return <EditorialServices />;
 
   return (
     <section className="v2-services" id="servizi">

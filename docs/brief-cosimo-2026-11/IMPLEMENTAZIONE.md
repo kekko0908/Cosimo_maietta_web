@@ -16,9 +16,10 @@ Il 4 novembre 2026 è stata autorizzata l'implementazione completa con dati e ma
 | Orizzonti vicini | `/fotografia/paesaggi` | 12 fotografie di costa e paesaggio dal Flickr dell'autore. |
 | Geometrie del lavoro | `/geometra/cantieri` | 8 fotografie di architetture e materiali, video di esempio, traccia dell'intervista e contatto per geometra. |
 | Archivio fotografico | `/archivio` | 46 fotografie uniche, sei filtri condivisibili tramite URL e caricamento progressivo. |
+| Chi sono | `/chi-sono` | Tre capitoli su persona, luce e professione e spazio per l’intervista. |
 | Privacy e contatti | `/privacy` | Informazioni sul funzionamento dell'anteprima e dei servizi di contatto. |
 
-I vecchi URL `/progetti/:slug` e `/versione2/*` restano utilizzabili. Le varianti di confronto si aprono con `lab=1`; Stories e Services V2 sono predefiniti. Nelle pagine interne il nome compare come firma discreta, mentre il titolo grande identifica il tema.
+I vecchi URL `/progetti/:slug` e `/versione2/*` restano utilizzabili. Le varianti di confronto si aprono con `lab=1`; Stories e Services V2 sono predefiniti. Il nome nella testata compare soltanto sulla home; nelle pagine interne la testata riporta «Fotografia / Portfolio» e il titolo identifica il tema. Le firme incorporate nei file originali restano parte delle immagini.
 
 ## Materiali provvisori e sostituzione
 
@@ -36,20 +37,24 @@ Le foto sono state scaricate dal [profilo Flickr di Cosimo Maietta](https://www.
 
 ## Design e interazioni
 
-La home mantiene la composizione e il copy precedente, ampliando le Stories a sei percorsi. Il carosello ha un comando di pausa e si arresta quando si seleziona manualmente uno scatto; con movimento ridotto non ruota automaticamente. Le gallerie mantengono le proporzioni complete delle immagini, con ritmo diverso tra studio, paesaggio e B/N. Il visualizzatore usa un dialogo modale, frecce da tastiera, Escape e ritorno del focus all'immagine di partenza.
+La revisione del 4 novembre conserva il copy approvato e la palette: la home presenta sei percorsi in una composizione asimmetrica, servizi a fisarmonica e footer come colophon. Il carosello ha un comando di pausa e si arresta quando si seleziona manualmente uno scatto; con movimento ridotto non ruota automaticamente. Le gallerie presentano una foto di apertura e quattro scatti selezionati, poi una griglia compatta che carica 24 immagini alla volta. Le fotografie restano intere e contenute, con folio leggibili e separatori obliqui animati. Serie precedente e successiva mostrano titolo e immagine della destinazione. Il visualizzatore usa un dialogo modale, frecce da tastiera, Escape e ritorno del focus all'immagine di partenza.
 
 Il suono ambientale è un accordo sintetizzato dal browser, spento per impostazione iniziale. Ha un volume regolabile e si arresta quando parte un video o si lascia la pagina. Non usa tracce musicali esterne. Il player video si carica dopo un clic; sottotitoli e testo sono disponibili separatamente.
 
 ## Build e pubblicazione
 
-`npm run build` genera la build Vite e nove documenti HTML con metadati specifici per le rotte principali. Non è un rendering completo del contenuto sul server. La configurazione Vercel serve prima i file reali e poi il fallback della SPA per gli altri URL. Le anteprime restano `noindex`; `robots.txt` blocca la scansione. Per il sito definitivo impostare dominio reale e `VITE_PREVIEW_MODE=false`: la build genererà anche la sitemap.
+`npm run build` genera la build Vite e dieci documenti HTML con metadati specifici per le rotte principali. Non è un rendering completo del contenuto sul server. La configurazione Vercel serve prima i file reali e poi il fallback della SPA per gli altri URL. Le anteprime restano `noindex`; `robots.txt` blocca la scansione. Per il sito definitivo impostare dominio reale e `VITE_PREVIEW_MODE=false`: la build genererà anche la sitemap.
 
 La pubblicazione richiesta riguarda un deploy di anteprima del branch. Acquisto del dominio, intestazione degli account e canoni di manutenzione restano decisioni commerciali da concordare; non sono stati attivati acquisti o abbonamenti.
 
-## Verifica
+## Verifica precedente alla revisione editoriale
 
 Controlli automatici superati: TypeScript, build e `npm run check:portfolio` (presenza dei sei percorsi, quantità e unicità delle immagini, provenienza, dimensioni reali e varianti AVIF/WebP/JPEG, video e sottotitoli). La revisione `21st` segnala 0 errori e 0 avvisi; restano suggerimenti informativi sui valori visuali già presenti nel design.
 
 Verifiche in browser sulla build locale: 45 combinazioni di pagina e larghezza (9 pagine a 1440, 1024, 768, 390 e 320 px), con un solo titolo principale per pagina, descrizioni presenti e nessun overflow dei titoli o sovrapposizione della testata. Superate anche 27 verifiche delle interazioni: galleria modale e focus, tastiera, caricamento progressivo, filtri e cronologia, video di 200 secondi e cinque sottotitoli, esclusione reciproca audio/video, copia del brief, menu mobile e movimento ridotto. Nessun errore JavaScript nelle prove sulla build.
 
 Ulteriori sette verifiche superate sulla build finale: pausa manuale del carosello, i tre URL progetto precedenti, varianti di confronto V1, pulizia dei parametri V2 conservando l'ancora e player definitivo con sottotitoli. Screenshot desktop e mobile ispezionati; gli artefatti locali sono in `output/playwright/` (esclusi da Git).
+
+## Revisione editoriale richiesta il 4 novembre
+
+Il dettaglio delle modifiche e delle verifiche del nuovo design è in [REVISIONE_EDITORIALE.md](REVISIONE_EDITORIALE.md). I conteggi della sezione precedente riguardano la prima implementazione.

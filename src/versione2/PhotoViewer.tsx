@@ -69,7 +69,7 @@ export function PhotoViewer({
             <span aria-live="polite">
               {String(index + 1).padStart(2, '0')} / {String(photos.length).padStart(2, '0')}
             </span>
-            <span className="v2-viewer-credit">© Cosimo Maietta</span>
+            <span className="v2-viewer-credit">© Fotografie dell’autore</span>
             <button type="button" onClick={() => move(1)} aria-label="Fotografia successiva">
               <ChevronRight aria-hidden="true" />
             </button>

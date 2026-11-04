@@ -35,16 +35,16 @@ Generated from project sources at 2026-11-04T15:29:44.442Z.
 ### Must
 
 - Preserve the existing editorial photography direction and approved copy.
-- Keep large photographs, Inter and Playfair Display, paper #f0ece3, ink #151311 and red #6b2026.
+- Keep bounded, complete photographs, Inter and Playfair Display, paper #f0ece3, ink #151311 and red #6b2026.
 - Support keyboard, touch and reduced motion.
 
 ### Avoid
 
-- Generic card grids for editorial collections, glass effects and decorative gradients.
+- Repeated full-screen photographs in collections, glass effects and decorative gradients.
 - Automatic audio playback.
 
 ## Decisions
 
-- Six thematic pages share navigation while preserving different photographic rhythms.
-- Only the home uses the name as its large identifying title.
-- Stories and Services V2 remain the defaults; comparison controls stay behind lab=1.
+- User revision of 4 November: asymmetric spreads, diagonal rules, readable folios and deliberate whitespace.
+- Only the home shows the full name in the header. Each collection opens with five curated photos followed by a compact contact sheet.
+- Stories and Services V2 remain the defaults; comparison controls stay behind lab=1. Dedicated Chi sono page, numbered service accordion, editorial colophon and explicit previous/next series links.

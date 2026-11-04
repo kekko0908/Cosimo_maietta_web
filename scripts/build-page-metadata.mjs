@@ -33,6 +33,7 @@ const routes = [
     description: collection.description,
     image: collection.photoIds[0],
   })),
+  { path: '/chi-sono', title: 'Chi sono', description: 'Fotografia e professione da geometra: uno sguardo sul volto, sulla luce e sui luoghi, con base a Napoli.', image: '23475988346' },
   {
     path: '/privacy',
     title: 'Privacy e contatti',

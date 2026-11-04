@@ -1,29 +1,63 @@
-import { Link, useLocation } from 'react-router-dom';
-import { useEffect, useRef } from 'react';
-import { portfolioCollections } from './collections';
+import { useEffect, useRef, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { ArrowUpRight, Plus } from "lucide-react";
+import { portfolioCollections } from "./collections";
 
 export function CollectionNavigation() {
   const location = useLocation();
-  const navigation = useRef<HTMLElement>(null);
+  const [open, setOpen] = useState(false);
+  const toggle = useRef<HTMLButtonElement>(null);
+  const current = portfolioCollections.find(
+    (collection) => collection.path === location.pathname,
+  );
   useEffect(() => {
-    const nav = navigation.current;
-    const active = nav?.querySelector<HTMLElement>('[aria-current="page"]');
-    if (nav && active)
-      nav.scrollLeft =
-        active.offsetLeft - nav.offsetLeft - nav.clientWidth / 2 + active.offsetWidth / 2;
+    setOpen(false);
   }, [location.pathname]);
   return (
-    <nav ref={navigation} className="v2-collection-navigation" aria-label="Percorsi fotografici">
-      {portfolioCollections.map((collection) => (
-        <Link
-          key={collection.slug}
-          to={collection.path}
-          aria-current={location.pathname === collection.path ? 'page' : undefined}
-        >
-          <span>{collection.index}</span>
-          {collection.label}
-        </Link>
-      ))}
-    </nav>
+    <div
+      className={`ed-collection-index ${open ? "is-open" : ""}`}
+      onKeyDown={(event) => {
+        if (event.key === "Escape" && open) {
+          setOpen(false);
+          toggle.current?.focus();
+        }
+      }}
+    >
+      <button
+        ref={toggle}
+        className="ed-index-toggle"
+        type="button"
+        aria-expanded={open}
+        aria-controls="collection-index"
+        onClick={() => setOpen((value) => !value)}
+      >
+        <span>Indice fotografico</span>
+        <span className="ed-index-current">
+          <b>{current?.index}</b>
+          {current?.label}
+        </span>
+        <Plus aria-hidden="true" />
+      </button>
+      <nav
+        id="collection-index"
+        className="ed-index-grid"
+        aria-label="Percorsi fotografici"
+        hidden={!open}
+      >
+        {portfolioCollections.map((collection) => (
+          <Link
+            key={collection.slug}
+            to={collection.path}
+            aria-current={
+              current?.slug === collection.slug ? "page" : undefined
+            }
+          >
+            <span className="ed-index-number">{collection.index}</span>
+            <span>{collection.label}</span>
+            <ArrowUpRight aria-hidden="true" />
+          </Link>
+        ))}
+      </nav>
+    </div>
   );
 }

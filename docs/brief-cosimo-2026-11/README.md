@@ -8,6 +8,7 @@ Analisi del messaggio del cliente e dello stato del sito, 4 novembre 2026.
 | [ANALISI_SITO.md](ANALISI_SITO.md) | Inventario verificato del sito e scostamenti rispetto alla richiesta. |
 | [DIREZIONE_E_INTERVENTI.md](DIREZIONE_E_INTERVENTI.md) | Direzione editoriale e fotografica, design, animazioni, transizioni e piano operativo. |
 | [RISPOSTE_E_MATERIALI.md](RISPOSTE_E_MATERIALI.md) | Risposte da condividere con il cliente e materiali o decisioni ancora necessari. |
+| [REVISIONE_EDITORIALE.md](REVISIONE_EDITORIALE.md) | Nuova direzione richiesta dall’utente: Chi sono, gallerie compatte, servizi, footer e verifiche. |
 | [IMPLEMENTAZIONE.md](IMPLEMENTAZIONE.md) | Pagine realizzate, scelte per l'anteprima, materiali provvisori, configurazione e verifiche. |
 
 ## Convenzioni

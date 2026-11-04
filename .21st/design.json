@@ -23,9 +23,18 @@
   "design": {
     "colorMode": "light",
     "colors": {
-      "--v2-paper": { "value": "#f0ece3", "source": "src/versione2/versione2.css" },
-      "--v2-ink": { "value": "#151311", "source": "src/versione2/versione2.css" },
-      "--v2-red": { "value": "#6b2026", "source": "src/versione2/versione2.css" }
+      "--v2-paper": {
+        "value": "#f0ece3",
+        "source": "src/versione2/versione2.css"
+      },
+      "--v2-ink": {
+        "value": "#151311",
+        "source": "src/versione2/versione2.css"
+      },
+      "--v2-red": {
+        "value": "#6b2026",
+        "source": "src/versione2/versione2.css"
+      }
     },
     "typography": {
       "--font-sans": {
@@ -49,10 +58,24 @@
     "patterns": []
   },
   "constraints": {
-    "must": ["Preserve existing copy and editorial photography direction", "Large photographs, paper background, serif titles", "Keyboard, touch and reduced-motion support"],
-    "avoid": ["Generic card grids for editorial collections", "Decorative gradients or glass effects", "Automatic audio playback"]
+    "must": [
+      "Preserve approved copy and paper/ink/red palette",
+      "Bounded complete photographs, first five curated then compact contact sheet",
+      "Keyboard, touch and reduced-motion support"
+    ],
+    "avoid": [
+      "Repeated full-screen photographs in collections",
+      "Decorative gradients or glass effects",
+      "Automatic audio playback"
+    ]
   },
-  "decisions": ["Keep Inter and Playfair Display, existing paper/ink/red palette, Stories and Services V2", "Six thematic pages with shared navigation and distinct photographic rhythm", "Only the home uses the name as its large identifying title"],
+  "decisions": [
+    "Keep Inter and Playfair Display, paper/ink/red palette, Stories and Services V2",
+    "User revision 2026-11-04: asymmetric spreads, diagonal rules, readable folios and deliberate whitespace",
+    "One opening photograph plus four curated photographs, then compact contact sheet in 24-image batches",
+    "Only the home shows the full name in the header; internal pages use thematic titles",
+    "Dedicated Chi sono page, numbered service accordion and explicit previous/next series navigation"
+  ],
   "evidence": [
     {
       "fact": "design.colorMode:light",
