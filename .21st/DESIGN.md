@@ -45,6 +45,8 @@ Generated from project sources at 2026-11-04T15:29:44.442Z.
 
 ## Decisions
 
-- User revision of 4 November: asymmetric spreads, diagonal rules, readable folios and deliberate whitespace.
+- User correction of 4 November: restore the original layered three-photo Stories on the home, retaining the warm palette and removing decorative story folios.
 - Only the home shows the full name in the header. Each collection opens with five curated photos followed by a compact contact sheet.
-- Stories and Services V2 remain the defaults; comparison controls stay behind lab=1. Dedicated Chi sono page, numbered service accordion, editorial colophon and explicit previous/next series links.
+- Stories and Services V2 remain the defaults; comparison controls stay behind lab=1. Dedicated Chi sono page, numbered service accordion and explicit previous/next series links.
+- Archive photographs are larger and aligned, grouped by series in authored order. All deduplicates shared photographs.
+- Footer is a photographic closing spread on warm paper, with compact links rather than the dark colophon.

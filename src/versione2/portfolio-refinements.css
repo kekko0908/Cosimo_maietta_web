@@ -1,0 +1,377 @@
+/* The home keeps its original layered Stories, in the selected warm palette. */
+.v2-works-stories {
+  background: var(--v2-paper-deep);
+  color: var(--v2-ink);
+}
+.v2-works-stories .v2-section-heading-dark,
+.v2-works-stories .v2-story-panel {
+  border-color: var(--v2-line);
+}
+.v2-works-stories .v2-story-copy p {
+  color: var(--v2-ink);
+}
+.v2-works-stories .v2-story-copy h3 {
+  color: var(--v2-red);
+}
+.v2-works-stories .v2-story-image {
+  border-color: var(--v2-paper-deep);
+}
+.ed-service-fold h3 > button {
+  padding-right: 8px;
+}
+
+/* Archive: aligned prints, ordered by photographic series, never staggered. */
+.ed-archive-page .v2-archive-gallery {
+  max-width: 1900px;
+  width: calc(100% - 8vw);
+  margin: 0 auto;
+  padding: 70px clamp(24px, 4vw, 90px) 90px;
+}
+.ed-archive-page .v2-archive-gallery > header {
+  margin-bottom: 45px;
+}
+.ed-archive-page .v2-archive-gallery > header h2 {
+  font-size: clamp(44px, 5vw, 84px);
+}
+.ed-archive-page .v2-archive-filters {
+  gap: 12px 26px;
+}
+.ed-archive-page .v2-archive-filters button {
+  font-size: 13px;
+  min-height: 44px;
+}
+.ed-archive-page .v2-archive-filters button[aria-pressed="true"] {
+  color: var(--v2-paper);
+  border-color: var(--v2-paper);
+}
+.ed-archive-page .v2-archive-count {
+  margin-bottom: 50px;
+  font-size: 12px;
+}
+.ed-archive-series-group + .ed-archive-series-group {
+  margin-top: 70px;
+}
+.ed-archive-series-group > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px;
+  padding-bottom: 22px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid rgb(240 236 227 / 25%);
+}
+.ed-archive-series-group .ed-eyebrow {
+  color: var(--v2-paper-deep);
+  font-size: 10px;
+}
+.ed-archive-series-group h3 {
+  font-size: clamp(30px, 3vw, 48px);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  margin-top: 12px;
+}
+.ed-archive-series-group > header > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  font-size: 12px;
+  min-height: 44px;
+}
+.ed-archive-series-group svg {
+  width: 16px;
+  height: 16px;
+}
+.ed-archive-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 35px 28px;
+}
+.ed-archive-photo-grid figure {
+  min-width: 0;
+  margin: 0;
+}
+.ed-archive-photo-grid a {
+  display: block;
+}
+.ed-archive-photo-mount {
+  height: clamp(260px, 25vw, 390px);
+  background: rgb(240 236 227 / 3%);
+  padding: 12px;
+}
+.ed-archive-photo-mount .v2-photo {
+  background: transparent;
+}
+.ed-archive-photo-mount .v2-photo img {
+  object-fit: contain;
+}
+.ed-archive-photo-grid figcaption {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  line-height: 1.4;
+  padding-top: 14px;
+}
+.ed-archive-photo-grid figcaption svg {
+  flex-shrink: 0;
+  transition: transform 0.25s;
+}
+.ed-archive-photo-grid a:hover figcaption svg {
+  transform: translate(3px, -3px);
+}
+
+/* A photographic closing spread, on paper rather than a dark site directory. */
+.ed-closing {
+  background: var(--v2-paper-deep);
+  color: var(--v2-ink);
+  padding: 0 5vw;
+}
+.ed-closing-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  border-top: 3px solid var(--v2-red);
+}
+.ed-closing-masthead {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 25px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 10px;
+}
+.ed-closing-spread {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.5fr) minmax(0, 1.5fr);
+  gap: 7%;
+  align-items: center;
+  padding: 30px 9% 60px;
+}
+.ed-closing-photo {
+  position: relative;
+  width: 100%;
+  max-width: 240px;
+  height: 250px;
+  margin: 0;
+  justify-self: center;
+}
+.ed-closing-photo > picture {
+  background: transparent;
+}
+.ed-closing-photo > picture img {
+  object-fit: contain;
+}
+.ed-closing-photo figcaption {
+  font-size: 10px;
+  margin-top: 12px;
+  letter-spacing: 0.035em;
+}
+.ed-closing-statement {
+  z-index: 1;
+}
+.ed-closing-statement h2 {
+  font-size: clamp(46px, 5.3vw, 86px);
+  line-height: 0.96;
+  letter-spacing: -0.055em;
+}
+.ed-closing-statement h2 em {
+  color: var(--v2-red);
+}
+.ed-closing-statement p {
+  margin-top: 26px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.ed-closing-slash {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  font-family: var(--font-serif);
+  font-size: 170px;
+  line-height: 1;
+  color: var(--v2-red);
+}
+.ed-closing-directory {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr 1fr;
+  gap: 5%;
+  padding: 30px 0 38px;
+  border-top: 1px solid var(--v2-line);
+}
+.ed-closing-directory nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
+}
+.ed-closing-directory nav > span {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 13px;
+  color: var(--v2-red);
+}
+.ed-closing-directory a {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  min-height: 28px;
+  font-size: 12px;
+}
+.ed-closing-directory a svg {
+  width: 13px;
+  height: 13px;
+}
+.ed-closing-directory a:hover {
+  color: var(--v2-red);
+}
+.ed-closing-series {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px 28px;
+}
+.ed-closing-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px 25px;
+  padding: 20px 0;
+  border-top: 1px solid var(--v2-line);
+  font-size: 10px;
+}
+@media (min-width: 2000px) {
+  .v2-works-stories .v2-story-panel > a {
+    max-width: 2200px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 1100px) {
+  .ed-archive-photo-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px 20px;
+  }
+  .ed-archive-photo-mount {
+    height: 290px;
+  }
+  .ed-closing-spread {
+    padding-left: 0;
+    padding-right: 6%;
+  }
+  .ed-closing-directory {
+    grid-template-columns: 1fr 1.4fr 1fr;
+    gap: 30px;
+  }
+  .ed-closing-directory nav:last-child {
+    grid-column: 3;
+  }
+}
+@media (max-width: 700px) {
+  .ed-archive-page .v2-archive-gallery {
+    width: 100%;
+    padding: 45px 6vw 65px;
+  }
+  .ed-archive-page .v2-archive-gallery > header {
+    margin-bottom: 25px;
+  }
+  .ed-archive-page .v2-archive-gallery > header h2 {
+    font-size: 48px;
+    line-height: 0.95;
+  }
+  .ed-archive-page .v2-archive-filters {
+    gap: 6px 18px;
+  }
+  .ed-archive-page .v2-archive-filters button {
+    font-size: 12px;
+  }
+  .ed-archive-page .v2-archive-count {
+    margin-bottom: 35px;
+  }
+  .ed-archive-series-group > header {
+    display: block;
+    margin-bottom: 25px;
+    padding-bottom: 18px;
+  }
+  .ed-archive-series-group > header > a {
+    margin-top: 8px;
+  }
+  .ed-archive-series-group + .ed-archive-series-group {
+    margin-top: 50px;
+  }
+  .ed-archive-series-group h3 {
+    font-size: 34px;
+  }
+  .ed-archive-photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px 16px;
+  }
+  .ed-archive-photo-mount {
+    height: clamp(175px, 56vw, 310px);
+    padding: 6px;
+  }
+  .ed-archive-photo-grid figcaption {
+    font-size: 15px;
+    gap: 8px;
+    padding-top: 10px;
+  }
+  .ed-archive-photo-grid figcaption svg {
+    width: 13px;
+    height: 13px;
+  }
+  .ed-closing {
+    padding: 0 6vw;
+  }
+  .ed-closing-masthead {
+    font-size: 9px;
+    letter-spacing: 0.09em;
+    padding: 22px 0;
+  }
+  .ed-closing-spread {
+    grid-template-columns: 0.65fr 1fr;
+    gap: 22px;
+    padding: 25px 0 45px;
+  }
+  .ed-closing-photo {
+    height: 180px;
+  }
+  .ed-closing-photo figcaption {
+    font-size: 9px;
+  }
+  .ed-closing-statement h2 {
+    font-size: clamp(30px, 7.5vw, 49px);
+    line-height: 1.05;
+  }
+  .ed-closing-statement p {
+    margin-top: 17px;
+    font-size: 11px;
+  }
+  .ed-closing-slash {
+    display: none;
+  }
+  .ed-closing-directory {
+    grid-template-columns: 1fr 1fr;
+    gap: 35px 20px;
+  }
+  .ed-closing-directory nav:last-child {
+    grid-column: auto;
+  }
+  .ed-closing-directory nav > span {
+    margin-bottom: 8px;
+  }
+  .ed-closing-series {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+  .ed-closing-bottom {
+    font-size: 9px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ed-archive-photo-grid figcaption svg {
+    transition: none;
+  }
+}

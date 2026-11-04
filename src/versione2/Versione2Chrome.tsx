@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import { versione2Socials } from "./content";
+import { versione2Photos, versione2Socials } from "./content";
 import { portfolioCollections } from "./collections";
 import { siteConfig } from "./siteConfig";
 import { AmbientSound } from "./AmbientSound";
-import { EditorialRule } from "./EditorialRule";
+import { ResponsivePhoto } from "./ResponsivePhoto";
 import { ArrowUpRight } from "lucide-react";
 import "./versione2.css";
 import "./portfolio.css";
 import "./editorial.css";
+import "./portfolio-refinements.css";
 
 export function Versione2Header() {
   const [open, setOpen] = useState(false);
@@ -100,42 +101,56 @@ export function Versione2Header() {
 
 export function Versione2Footer() {
   return (
-    <footer className="ed-colophon">
-      <EditorialRule />
-      <div className="ed-colophon-top">
-        <span>Portfolio fotografico</span>
-        <span>Napoli / Italia</span>
-        <span>Colophon</span>
-      </div>
-      <div className="ed-colophon-body">
-        <div className="ed-colophon-title">
-          <h2>
-            Indice <em>&</em>
-            <br />
-            contatti.
-          </h2>
-          <p>
-            Ritratti, moda e storie visive. A Napoli e ovunque il progetto
-            prenda forma.
-          </p>
+    <footer className="ed-closing">
+      <div className="ed-closing-inner">
+        <div className="ed-closing-masthead">
+          <span>Fotografia / Napoli</span>
+          <span>Portfolio & contatti</span>
         </div>
-        <nav className="ed-colophon-index" aria-label="Percorsi del portfolio">
-          {portfolioCollections.map((collection) => (
-            <Link key={collection.slug} to={collection.path}>
-              <span>{collection.label}</span>
-              <ArrowUpRight aria-hidden="true" />
-            </Link>
-          ))}
-        </nav>
-        <div className="ed-colophon-notes">
+        <div className="ed-closing-spread">
+          <figure className="ed-closing-photo">
+            <ResponsivePhoto
+              photo={versione2Photos.eyes01}
+              sizes="(max-width: 700px) 38vw, 260px"
+            />
+            <figcaption>Dal portfolio / Eyes I</figcaption>
+          </figure>
+          <div className="ed-closing-statement">
+            <h2>
+              Ritratti, moda
+              <br />e <em>storie visive.</em>
+            </h2>
+            <p>A Napoli e ovunque il progetto prenda forma.</p>
+          </div>
+          <span className="ed-closing-slash" aria-hidden="true">
+            /
+          </span>
+        </div>
+        <div className="ed-closing-directory">
           <nav aria-label="Esplora il sito">
-            <Link to="/chi-sono">Chi sono</Link>
-            <Link to="/archivio">Archivio completo</Link>
+            <span>Esplora</span>
+            <Link to="/archivio">
+              Archivio fotografico <ArrowUpRight aria-hidden="true" />
+            </Link>
+            <Link to="/chi-sono">
+              Chi sono <ArrowUpRight aria-hidden="true" />
+            </Link>
             <a href="/#contatti">
-              Scrivi un messaggio <ArrowUpRight aria-hidden="true" />
+              Contatti <ArrowUpRight aria-hidden="true" />
             </a>
           </nav>
+          <nav aria-label="Percorsi del portfolio">
+            <span>Le serie</span>
+            <div className="ed-closing-series">
+              {portfolioCollections.map((collection) => (
+                <Link key={collection.slug} to={collection.path}>
+                  {collection.label}
+                </Link>
+              ))}
+            </div>
+          </nav>
           <nav aria-label="Canali social">
+            <span>Altrove</span>
             {versione2Socials.map((social) => (
               <a
                 key={social.label}
@@ -143,11 +158,12 @@ export function Versione2Footer() {
                 target="_blank"
                 rel="noreferrer"
               >
-                {social.label}
+                {social.label} <ArrowUpRight aria-hidden="true" />
               </a>
             ))}
           </nav>
           <nav aria-label="Piattaforme di lavoro">
+            <span>Professione</span>
             {siteConfig.professionalLinks.map((link) => (
               <a
                 key={link.label}
@@ -155,16 +171,16 @@ export function Versione2Footer() {
                 target="_blank"
                 rel="noreferrer"
               >
-                {link.label}
+                {link.label} <ArrowUpRight aria-hidden="true" />
               </a>
             ))}
           </nav>
         </div>
-      </div>
-      <div className="ed-colophon-bottom">
-        <span>© {new Date().getFullYear()} / Fotografie dell’autore</span>
-        <Link to="/privacy">Privacy e contatti</Link>
-        <AmbientSound />
+        <div className="ed-closing-bottom">
+          <span>© {new Date().getFullYear()} / Fotografie dell’autore</span>
+          <Link to="/privacy">Privacy e contatti</Link>
+          <AmbientSound />
+        </div>
       </div>
     </footer>
   );

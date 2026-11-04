@@ -1,5 +1,15 @@
 # Revisione editoriale — 4 novembre 2026
 
+## Correzione successiva dell'utente
+
+Queste scelte sostituiscono la proposta descritta più sotto per home, archivio e footer:
+
+- **Home:** ripristinata la precedente composizione Stories con tre fotografie sovrapposte per percorso e animazioni di ingresso. Conservata la palette calda; rimossi i folio decorativi aggiunti nella proposta scartata.
+- **Archivio:** conservata la sala scura, ampliata fino a 1.900 px. Quattro colonne desktop, tre tablet, due telefono; fotografie intere in supporti alti 390 px sugli schermi ampi, 360 px a 1440 e circa 218 px a 390. Eliminati gli sfalsamenti arbitrari. Le serie seguono l'ordine delle selezioni, con titoli e collegamenti espliciti. La vista Tutte mostra 46 immagini uniche; i filtri tematici mantengono anche le fotografie condivise tra più serie.
+- **Footer:** sostituito il colophon scuro con una pagina di chiusura su carta calda: fotografia, testo editoriale, navigazione compatta, social e piattaforme professionali. Nessuna ripetizione del nome completo.
+
+Verifiche della correzione: 18 combinazioni di pagina e larghezza (home, archivio e Chi sono a 3840, 1440, 1024, 768, 390 e 320 px) e 17 controlli su filtri, unicità, ordine, caricamento, destinazioni, Stories, footer e movimento ridotto. Nessun errore JavaScript. Screenshot desktop, 4K e mobile ispezionati. I controlli della proposta sottostante sono storici.
+
 ## Richiesta e direzione
 
 La prima proposta mostrava immagini troppo grandi e una sequenza lenta da percorrere. L'utente richiede una pagina «Chi sono» approfondita, gerarchie più leggibili, linee oblique, spazio vuoto, movimento e una galleria utilizzabile anche con 50 fotografie. Chiede inoltre servizi e footer editoriali e di eliminare la ripetizione del nome nelle pagine interne.

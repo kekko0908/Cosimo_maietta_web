@@ -676,110 +676,6 @@ button:focus-visible > .ed-photo-open {
   width: 17px;
   height: 17px;
 }
-.ed-colophon {
-  position: relative;
-  padding: 80px 5vw 20px;
-  background: var(--v2-ink);
-  color: var(--v2-paper);
-}
-.ed-colophon > .ed-rule {
-  top: 0;
-  bottom: auto;
-  color: var(--v2-red);
-}
-.ed-colophon .ed-rule span {
-  height: 4px;
-}
-.ed-colophon-top {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  max-width: 1400px;
-  margin: 0 auto 50px;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-}
-.ed-colophon-body {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr) minmax(0, 0.7fr);
-  gap: 6%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding-bottom: 60px;
-}
-.ed-colophon-title h2 {
-  font-size: clamp(52px, 6vw, 86px);
-  line-height: 0.9;
-  letter-spacing: -0.055em;
-}
-.ed-colophon-title h2 em {
-  color: #c28888;
-}
-.ed-colophon-title > p {
-  max-width: 280px;
-  margin-top: 30px;
-  font-size: 13px;
-  line-height: 1.7;
-  opacity: 0.78;
-}
-.ed-colophon-index {
-  display: flex;
-  flex-direction: column;
-}
-.ed-colophon-index > a {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  align-items: center;
-  border-top: 1px solid rgba(240, 236, 227, 0.25);
-  padding: 13px 0;
-  font-family: var(--font-serif);
-  font-size: 22px;
-}
-.ed-colophon-index > a > svg {
-  width: 16px;
-  height: 16px;
-}
-.ed-colophon-notes {
-  display: grid;
-  align-content: start;
-  gap: 30px;
-}
-.ed-colophon-notes nav {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 13px;
-  font-size: 13px;
-}
-.ed-colophon-notes a {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 20px;
-}
-.ed-colophon-notes a > svg {
-  width: 14px;
-  height: 14px;
-  vertical-align: middle;
-  margin-left: 5px;
-}
-.ed-colophon-bottom {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 12px 25px;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding-top: 20px;
-  border-top: 1px solid rgba(240, 236, 227, 0.25);
-  font-size: 11px;
-}
-.ed-colophon a:hover {
-  color: #d9a1a5;
-}
 .ed-about-opening {
   position: relative;
   max-width: 1440px;
@@ -975,146 +871,6 @@ button:focus-visible > .ed-photo-open {
   font-size: 22px;
   line-height: 1.5;
 }
-.ed-archive-page .v2-archive-gallery {
-  max-width: 1350px;
-  margin: 0 auto;
-  padding: 55px 6vw 100px;
-}
-.ed-archive-page .v2-contact-sheet {
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 28px 18px;
-}
-.ed-archive-page .v2-contact-item .v2-photo {
-  height: 160px;
-  background: transparent;
-}
-.ed-archive-page .v2-contact-item .v2-photo img {
-  object-fit: contain;
-}
-.ed-archive-page .v2-contact-item > span {
-  font-family: var(--font-serif);
-  font-size: 15px;
-  letter-spacing: -0.01em;
-  text-transform: none;
-}
-.ed-archive-page .v2-contact-item > small {
-  font-size: 10px;
-}
-.ed-stories {
-  position: relative;
-  padding: 90px max(6vw, calc((100vw - 1250px) / 2)) 120px;
-}
-.ed-stories > header {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 25px;
-  align-items: end;
-  margin-bottom: 75px;
-}
-.ed-stories > header > .ed-eyebrow {
-  grid-column: 1 / -1;
-}
-.ed-stories > header > h2 {
-  font-size: clamp(54px, 6.5vw, 95px);
-  line-height: 0.91;
-  letter-spacing: -0.055em;
-}
-.ed-stories > header > h2 em {
-  color: var(--v2-red);
-}
-.ed-stories > header > a {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--v2-line);
-  font-size: 13px;
-}
-.ed-stories > header > a svg {
-  width: 16px;
-  height: 16px;
-}
-.ed-story-spread {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  align-items: start;
-  gap: 75px 5%;
-}
-.ed-story-entry {
-  min-width: 0;
-}
-.ed-story-entry-1,
-.ed-story-entry-5 {
-  grid-column: 1 / span 5;
-}
-.ed-story-entry-2 {
-  grid-column: 8 / span 5;
-  margin-top: 100px;
-}
-.ed-story-entry-3 {
-  grid-column: 2 / span 6;
-}
-.ed-story-entry-4 {
-  grid-column: 9 / span 4;
-  margin-top: 90px;
-}
-.ed-story-entry-6 {
-  grid-column: 7 / span 6;
-  margin-top: 65px;
-}
-.ed-story-cover {
-  position: relative;
-  height: 270px;
-  padding: 10px 0 0 25px;
-}
-.ed-story-cover > picture {
-  background: transparent;
-}
-.ed-story-cover > picture img {
-  object-fit: contain;
-}
-.ed-story-cover > span {
-  position: absolute;
-  z-index: 2;
-  left: 0;
-  top: -30px;
-  color: var(--v2-red);
-  font-family: var(--font-serif);
-  font-size: 80px;
-  line-height: 1;
-  letter-spacing: -0.08em;
-}
-.ed-story-cover > svg {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 24px;
-  height: 24px;
-  transition: transform 0.3s;
-}
-.ed-story-entry a:hover .ed-story-cover > svg {
-  transform: translate(4px, -4px);
-}
-.ed-story-text {
-  margin-top: 25px;
-  border-top: 1px solid var(--v2-line);
-  padding-top: 18px;
-}
-.ed-story-text h3 {
-  margin: 16px 0;
-  font-size: clamp(32px, 3.8vw, 53px);
-  line-height: 0.96;
-  letter-spacing: -0.05em;
-}
-.ed-story-entry-4 h3 {
-  font-size: clamp(29px, 3vw, 43px);
-}
-.ed-story-text > p {
-  max-width: 460px;
-  font-family: var(--font-serif);
-  font-size: 18px;
-  line-height: 1.5;
-}
 @media (min-width: 1700px) {
   .ed-collection-opening,
   .ed-selection,
@@ -1138,9 +894,6 @@ button:focus-visible > .ed-photo-open {
   }
   .v2-hero-archive .v2-archive-hero-image {
     height: 390px;
-  }
-  .ed-archive-page .v2-contact-sheet {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
   .ed-collection-opening {
     gap: 4%;
@@ -1188,14 +941,6 @@ button:focus-visible > .ed-photo-open {
   .ed-service-fold h3 > button {
     grid-template-columns: 80px 1fr 30px;
     gap: 20px;
-  }
-  .ed-colophon-body {
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-  }
-  .ed-colophon-notes {
-    grid-column: 1 / -1;
-    grid-template-columns: repeat(3, 1fr);
   }
   .ed-about-opening h1 {
     font-size: 84px;
@@ -1251,62 +996,6 @@ button:focus-visible > .ed-photo-open {
   }
   .ed-archive-opening p {
     font-size: 20px;
-  }
-  .ed-archive-page .v2-contact-sheet {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 25px 13px;
-  }
-  .ed-archive-page .v2-contact-item .v2-photo {
-    height: 135px;
-  }
-  .ed-archive-page .v2-contact-item > span {
-    font-size: 14px;
-  }
-  .ed-archive-page .v2-contact-item > small {
-    font-size: 9px;
-  }
-  .ed-stories {
-    padding: 65px 6vw 85px;
-  }
-  .ed-stories > header {
-    grid-template-columns: 1fr;
-    gap: 25px;
-    margin-bottom: 65px;
-  }
-  .ed-stories > header > a {
-    width: fit-content;
-  }
-  .ed-story-spread {
-    grid-template-columns: 1fr 1fr;
-    gap: 65px 7%;
-  }
-  .ed-story-entry-1,
-  .ed-story-entry-3,
-  .ed-story-entry-5 {
-    grid-column: 1 / -1;
-    width: 88%;
-    margin: 0;
-  }
-  .ed-story-entry-2,
-  .ed-story-entry-4,
-  .ed-story-entry-6 {
-    grid-column: 1 / -1;
-    width: 84%;
-    justify-self: end;
-    margin: 0;
-  }
-  .ed-story-cover {
-    height: 240px;
-  }
-  .ed-story-cover > span {
-    font-size: 68px;
-  }
-  .ed-story-text h3,
-  .ed-story-entry-4 h3 {
-    font-size: 38px;
-  }
-  .ed-story-text > p {
-    font-size: 17px;
   }
   .ed-collection-opening {
     grid-template-columns: 1fr;
@@ -1507,59 +1196,6 @@ button:focus-visible > .ed-photo-open {
   .ed-service-panel-inner > div > a {
     font-size: 12px;
   }
-  .ed-colophon {
-    padding: 60px 6vw 20px;
-  }
-  .ed-colophon-top {
-    margin-bottom: 40px;
-    font-size: 9px;
-  }
-  .ed-colophon-top > span:last-child {
-    display: none;
-  }
-  .ed-colophon-body {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    padding-bottom: 40px;
-  }
-  .ed-colophon-title h2 {
-    font-size: 70px;
-  }
-  .ed-colophon-title > p {
-    max-width: 350px;
-    margin-top: 25px;
-  }
-  .ed-colophon-index {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0 25px;
-  }
-  .ed-colophon-index > a {
-    font-size: 18px;
-    gap: 10px;
-    padding: 15px 0;
-  }
-  .ed-colophon-index > a svg {
-    width: 14px;
-    height: 14px;
-  }
-  .ed-colophon-notes {
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-  }
-  .ed-colophon-notes nav:first-child {
-    grid-column: 1 / -1;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  .ed-colophon-notes nav {
-    gap: 15px;
-    font-size: 12px;
-  }
-  .ed-colophon-bottom {
-    font-size: 10px;
-  }
   .ed-about-opening {
     grid-template-columns: 1fr;
     gap: 55px;
@@ -1626,9 +1262,6 @@ button:focus-visible > .ed-photo-open {
 @media (max-width: 390px) {
   .ed-archive-opening h1 {
     font-size: 54px;
-  }
-  .ed-archive-page .v2-contact-item .v2-photo {
-    height: 115px;
   }
   .ed-index-toggle > span:first-child {
     font-size: 15px;
